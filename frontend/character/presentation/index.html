@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Character SOP video prototype</title>
+<script type="importmap">{"imports":{"three":"../vendor/three/build/three.module.js"}}</script>
+<style>
+body{background:#0e1726;color:#eaf2ff;font:16px system-ui;margin:24px}main{max-width:960px;margin:auto}canvas,video{width:100%;display:block}button,a{margin:12px 12px 12px 0;color:inherit}button{background:#234663;padding:12px;border:1px solid #72dcd5;border-radius:8px}#stage{position:absolute;width:360px;height:470px;left:0;top:0;opacity:0;pointer-events:none}#status{min-height:24px}
+</style>
+<main><h1>Character-led SOP prototype</h1><p>Local synthetic fixture. No company documents or employee data.</p><canvas id="output" width="960" height="540" aria-label="Synthetic SOP presentation"></canvas><button id="record" disabled>Record presentation</button><a id="download" hidden download="character-sop.webm">Download recording</a><p id="status" role="status">Loading existing character and narration…</p><label>Verify exported MP4 <input id="verify" type="file" accept="video/mp4"></label><video id="playback" controls hidden></video></main><div id="stage"></div>
+<script type="module" src="presentation.js"></script></html>

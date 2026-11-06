@@ -1,0 +1,204 @@
+.ahdus-character-stage{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);align-items:start;gap:16px;margin:16px;min-width:0;isolation:isolate}
+.ahdus-avatar-presence{position:relative;height:300px;min-width:0;overflow:hidden;contain:layout paint;isolation:isolate}
+.ahdus-interaction-dock{order:1;position:static;max-width:100%;min-width:0}
+.ahdus-subtitles{order:2;grid-column:1/-1;position:static;margin:0;padding:10px 18px;border-radius:24px;background:#101e2de8;color:#fff;font:15px/1.5 system-ui;text-align:center;pointer-events:none;overflow-wrap:anywhere}
+.ahdus-subtitles[hidden]{display:none}
+@media(max-width:700px){.ahdus-character-stage{grid-template-columns:minmax(0,1fr);margin:12px}.ahdus-avatar-presence{height:260px}}
+.ahdus-avatar-presence:before{content:"";position:absolute;bottom:8px;left:calc(50% - 28px);width:56px;height:100px;border-radius:50%;pointer-events:none;opacity:0;box-shadow:0 0 28px #5cdbdf88;border:2px solid #7bdde0;transition:opacity .2s}
+.ahdus-avatar-presence[data-state=speaking]:before,.ahdus-avatar-presence[data-state=listening]:before{opacity:.8;animation:ahdus-breathe 1.4s ease-in-out infinite}
+.ahdus-avatar-presence[data-state=thinking]:before{opacity:.5;animation:ahdus-breathe 2.5s ease-in-out infinite}
+@keyframes ahdus-breathe{50%{transform:scale(1.035);opacity:.35}}
+
+@media(prefers-reduced-motion:reduce){.ahdus-avatar-presence:before{animation:none!important;transition:none!important}}
+
+/* Reserve real layout space; never place the avatar over the page's hit targets. */
+main.ahdus-character-reserved{box-sizing:border-box;padding-right:273px!important}
+.ahdus-character-stage{grid-template-columns:minmax(0,1fr)}
+.ahdus-avatar-presence.ahdus-character-corner{position:fixed;right:8px;width:256.5px;height:min(405px,calc(100dvh - 24px));z-index:1;transition:top .45s ease;pointer-events:auto}
+@media(max-width:700px){main.ahdus-character-reserved{padding-right:153px!important}.ahdus-avatar-presence.ahdus-character-corner{right:4px;width:140.4px;height:min(270px,calc(100dvh - 24px))}}
+@media(prefers-reduced-motion:reduce){.ahdus-character-corner{transition:none!important}}
+
+.ahdus-subtitles{letter-spacing:.015em;background:linear-gradient(90deg,transparent,#101e2de8 15%,#101e2de8 85%,transparent);border-radius:0;font-weight:500}
+
+/* Expanded companion keeps the dashboard and its real sidebar accessible. */
+.ahdus-avatar-focused main.ahdus-character-reserved{padding-right:var(--ahdus-interaction-rail)!important}
+.ahdus-avatar-focused .ahdus-avatar-presence.ahdus-character-corner{top:16px!important;right:12px;width:calc(var(--ahdus-interaction-rail) - 24px)!important;height:var(--ahdus-focused-height)!important;z-index:210}
+.ahdus-focus-return{position:fixed;right:16px;bottom:16px;z-index:212;padding:10px;border-radius:10px;background:#203b50;color:white;border:1px solid #84abb8;cursor:pointer}
+.ahdus-focus-return[hidden]{display:none}
+.ahdus-avatar-focused .sidebar:not(.open){width:76px}
+.ahdus-avatar-focused .main-content{margin-left:76px}
+.ahdus-avatar-focused .sidebar:not(.open) .nav-item{font-size:0;justify-content:center}
+.ahdus-avatar-focused .sidebar:not(.open) .nav-item svg,.ahdus-avatar-focused .sidebar:not(.open) .nav-item i{width:24px;height:24px;font-size:24px}
+.ahdus-avatar-focused .sidebar:not(.open) .ahdus-character-settings{font-size:11px;white-space:normal;text-align:center}
+.ahdus-character-stage .ahdus-interaction-dock{position:fixed;left:90px;bottom:18px;width:min(380px,calc(60vw - 106px))!important;max-height:calc(100dvh - 36px);z-index:211;overflow:auto}
+.ahdus-profile-menu{padding:8px}.ahdus-profile-menu[hidden]{display:none}
+/* One reserved rail: the Ask dock never crosses onto dashboard controls. */
+.ahdus-avatar-focused{--ahdus-interaction-rail:380px;--ahdus-focused-height:min(546.75px,calc(100dvh - 280px))}
+.ahdus-avatar-focused .ahdus-character-stage .ahdus-interaction-dock{left:auto;right:12px;top:calc(44px + var(--ahdus-focused-height));bottom:auto;width:calc(var(--ahdus-interaction-rail) - 24px)!important;max-height:240px}
+@media(max-width:700px){
+ .ahdus-character-stage .ahdus-interaction-dock{left:auto;right:12px;bottom:64px;width:calc(44vw - 24px)!important}
+ .ahdus-avatar-focused{--ahdus-interaction-rail:44vw;--ahdus-focused-height:min(364.5px,calc(100dvh - 280px))}
+ .ahdus-avatar-focused .main-content{margin-left:0}
+ .ahdus-focus-return{font-size:11px;max-width:calc(44vw - 24px)}
+}
+@media(min-width:1100px){
+ .ahdus-avatar-focused{--ahdus-interaction-rail:650px;--ahdus-focused-height:min(546.75px,calc(100dvh - 32px))}
+ .ahdus-avatar-focused .ahdus-avatar-presence.ahdus-character-corner{width:346.275px!important}
+ .ahdus-avatar-focused .ahdus-character-stage .ahdus-interaction-dock{right:370px;top:clamp(24px,25dvh,220px);width:264px!important;max-height:calc(100dvh - 250px)}
+}
+
+
+/* Collapsed labels stay accessible; opening navigation restores normal styles. */
+.ahdus-avatar-focused .sidebar:not(.open) .logo-text,
+.ahdus-avatar-focused .sidebar:not(.open) .logout-btn span{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+.ahdus-avatar-focused .sidebar:not(.open) .sidebar-header{padding:18px;justify-content:center}
+.ahdus-avatar-focused .sidebar:not(.open) .logo{gap:0}
+.ahdus-avatar-focused .sidebar:not(.open) .logo-icon{flex-shrink:0}
+.ahdus-avatar-focused .sidebar:not(.open) .sidebar-footer{padding:12px}
+.ahdus-avatar-focused .sidebar:not(.open) .logout-btn{justify-content:center;padding:12px;gap:0}
+.ahdus-avatar-focused .sidebar:not(.open) .logout-btn svg{flex-shrink:0}
+@media(min-width:769px){.ahdus-avatar-focused:has(.sidebar.open) .main-content{margin-left:280px}}
+
+/* Concept 6: one in-flow character beside each dashboard's existing work area. */
+.ahdus-character-stage[data-layout="beside"] {
+  --character-column: clamp(190px, 24vw, 300px);
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--character-column) minmax(0, 1fr);
+  grid-template-rows: auto auto auto;
+  align-items: start;
+  gap: 16px 24px;
+  margin: 0 0 24px;
+  padding: 24px;
+  border: 1px solid var(--border, #264356);
+  border-radius: 24px;
+  background: var(--bg-primary, #0b1423);
+}
+.ahdus-character-stage[data-layout="beside"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 12% 65%, #00c9df20, transparent 58%),
+    linear-gradient(145deg, #00c9df0c, transparent 65%);
+  pointer-events: none;
+}
+.ahdus-character-stage[data-layout="beside"] .ahdus-avatar-presence {
+  position: sticky;
+  top: 84px;
+  grid-column: 1;
+  grid-row: 1 / 4;
+  width: 100%;
+  height: 420px;
+  max-height: calc(100svh - 112px);
+  align-self: start;
+  transition: height .25s ease;
+}
+.ahdus-character-stage[data-layout="beside"] .ahdus-avatar-presence::after {
+  content: "";
+  position: absolute;
+  bottom: 7%;
+  left: 25%;
+  width: 50%;
+  height: 12px;
+  border-radius: 50%;
+  background: #00b9cf12;
+  filter: blur(6px);
+  pointer-events: none;
+}
+.ahdus-learning-content {
+  grid-column: 2;
+  grid-row: 1;
+  min-width: 0;
+}
+.ahdus-learning-content > :last-child { margin-bottom: 0; }
+.ahdus-learning-content .dashboard-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+  gap: 16px;
+}
+.ahdus-learning-content .progress-card-grid {
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+}
+.ahdus-character-stage[data-layout="beside"] .ahdus-interaction-dock {
+  position: static;
+  grid-column: 2;
+  grid-row: 2;
+  width: 100% !important;
+  max-height: 340px;
+  z-index: auto;
+}
+.ahdus-character-stage[data-layout="beside"] .ahdus-subtitles {
+  grid-column: 2;
+  grid-row: 3;
+  text-align: left;
+  padding: 8px 12px;
+}
+.ahdus-character-stage[data-layout="beside"] .ahdus-focus-return {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  right: auto;
+  bottom: auto;
+  z-index: 2;
+  padding: 6px 10px;
+  font-size: 12px;
+}
+.ahdus-character-stage[data-layout="beside"].ahdus-learning-focused {
+  --character-column: clamp(210px, 27vw, 340px);
+}
+.ahdus-character-stage[data-layout="beside"].ahdus-learning-focused .ahdus-avatar-presence {
+  height: 520px;
+}
+@media (min-width: 1200px) {
+  .ahdus-dashboard-guide .welcome-section {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 24px;
+  }
+  .ahdus-dashboard-guide .welcome-text { flex: 1; min-width: 0; }
+  .ahdus-dashboard-guide .welcome-text h2 { font-size: 24px; }
+  .ahdus-dashboard-guide .welcome-stats {
+    margin: 0;
+    padding: 0 0 0 24px;
+    border-top: 0;
+    border-left: 1px solid #ffffff30;
+    gap: 20px;
+  }
+}
+@media (max-width: 1050px) {
+  .ahdus-character-stage[data-layout="beside"],
+  .ahdus-character-stage[data-layout="beside"].ahdus-learning-focused {
+    --character-column: 180px;
+    padding: 16px;
+    gap: 16px;
+  }
+  .ahdus-learning-content .progress-card-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 700px) {
+  .ahdus-character-stage[data-layout="beside"],
+  .ahdus-character-stage[data-layout="beside"].ahdus-learning-focused {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 16px;
+  }
+  .ahdus-character-stage[data-layout="beside"] .ahdus-avatar-presence {
+    position: relative;
+    top: auto;
+    grid-column: 1;
+    grid-row: 1;
+    width: min(280px, 100%);
+    height: 300px;
+    justify-self: center;
+  }
+  .ahdus-character-stage[data-layout="beside"].ahdus-learning-focused .ahdus-avatar-presence {
+    height: 360px;
+  }
+  .ahdus-character-stage[data-layout="beside"] .ahdus-learning-content { grid-column: 1; grid-row: 2; }
+  .ahdus-character-stage[data-layout="beside"] .ahdus-interaction-dock { grid-column: 1; grid-row: 3; }
+  .ahdus-character-stage[data-layout="beside"] .ahdus-subtitles { grid-column: 1; grid-row: 4; }
+  .ahdus-learning-content .progress-card-grid { grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ahdus-character-stage[data-layout="beside"] .ahdus-avatar-presence { transition: none; }
+}

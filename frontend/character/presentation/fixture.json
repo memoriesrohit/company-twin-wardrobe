@@ -1,0 +1,12 @@
+{
+  "id": "synthetic-workspace-check",
+  "label": "SYNTHETIC DEMO — NOT COMPANY POLICY",
+  "title": "Prepare your practice workspace",
+  "scenes": [
+    {"title":"A simple practice routine", "text":"Welcome. This fictional practice routine shows how to prepare a tidy training workspace."},
+    {"title":"01 / Clear your space", "text":"First, clear unnecessary items from your desk. Keep only the materials needed for this exercise."},
+    {"title":"02 / Check your materials", "text":"Next, check that your practice document is open and your notes are ready."},
+    {"title":"03 / Review before starting", "text":"Finally, review the exercise instructions. If anything is unclear, ask your trainer before continuing."},
+    {"title":"Ready to begin", "text":"You are ready to begin. Remember: clear, check, and review. This concludes our sample routine."}
+  ]
+}

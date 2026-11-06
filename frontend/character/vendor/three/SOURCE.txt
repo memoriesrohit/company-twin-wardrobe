@@ -1,0 +1,6 @@
+three.js 0.180.0
+https://registry.npmjs.org/three/-/three-0.180.0.tgz
+sha512-o+qycAMZrh+TsE01GqWUxUIKR1AL0S8pq7zDkYOQw8GqfX8b8VoCKYUoHbhiX5j+7hr8XsuHDVU6+gkQJQKg9w==
+Selected files unmodified; npm integrity verified; MIT license retained.
+
+Added unmodified GLTFLoader.js, SkeletonUtils.js and BufferGeometryUtils.js from the same official three@0.180.0 archive for the human asset (2026-10-22).

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wardrobe · Company Twin</title>
+<script type="importmap">{"imports":{"three":"../vendor/three/build/three.module.js"}}</script>
+<link rel="stylesheet" href="wardrobe.css">
+</head>
+<body>
+<header class="topbar">
+ <a class="back" href="../../../index.html">← Demo home</a>
+ <h1>Wardrobe</h1>
+ <p id="account" role="status">Checking your employee session…</p>
+ <a class="profile-link" href="#profile">Profile &amp; voice</a>
+</header>
+
+<main class="room">
+ <!-- left wing: hanging rail of tops -->
+ <section class="wing" aria-labelledby="tops-title">
+  <h2 id="tops-title"><span class="glow-dot"></span>Tops</h2>
+  <div class="rail" id="tops" role="radiogroup" aria-label="Top"></div>
+  <h3 id="colour-title">Shirt colour</h3>
+  <div class="swatches" id="swatches" role="radiogroup" aria-labelledby="colour-title"></div>
+  <label class="custom-colour"><span>Custom</span><input id="clothing-color" type="color" value="#ffffff"></label>
+  <small id="colour-note" class="note"></small>
+ </section>
+
+ <!-- centre: the avatar standing inside the open wardrobe -->
+ <section class="closet" aria-label="Your character in the wardrobe">
+  <div class="closet-frame">
+   <span class="door door-left" aria-hidden="true"></span>
+   <span class="door door-right" aria-hidden="true"></span>
+   <span class="rod" aria-hidden="true"></span>
+   <div id="stage" aria-label="Full-body character preview"></div>
+   <div class="nameplate"><strong id="who">…</strong><span id="who-about"></span></div>
+  </div>
+  <div class="controls" role="group" aria-label="Preview controls">
+   <button id="idle" title="Stand">Stand</button>
+   <button id="walk" title="Walk">Walk</button>
+   <button id="wave" title="Wave">Wave</button>
+   <button id="speak-sample" title="Speak a sample line">Speak</button>
+   <button id="stop-sample" title="Stop speaking">Stop</button>
+   <button id="mouth" title="Mouth movement preview">Mouth</button>
+   <button id="left" aria-label="Rotate left" title="Rotate left">⟲</button>
+   <button id="right" aria-label="Rotate right" title="Rotate right">⟳</button>
+  </div>
+  <p id="sample-caption" class="caption" aria-live="polite"></p>
+  <small id="sample-status" class="note" role="status"></small>
+ </section>
+
+ <!-- right wing: trousers shelf and saving -->
+ <section class="wing" aria-labelledby="trousers-title">
+  <h2 id="trousers-title"><span class="glow-dot"></span>Trousers</h2>
+  <div class="shelf" id="trousers" role="radiogroup" aria-label="Trousers"></div>
+  <small id="pants-note" class="note"></small>
+  <div class="save-box">
+   <button id="save-look" class="primary" disabled>Save my look</button>
+   <button id="reset-clothing" disabled>Reset outfit</button>
+   <small id="clothing-storage" class="note">Checking your employee account…</small>
+   <small id="clothing-status" class="note" role="status"></small>
+  </div>
+ </section>
+</main>
+
+<!-- bottom drawer: everyone in the wardrobe -->
+<section class="drawer" aria-labelledby="people-title">
+ <div class="drawer-head">
+  <h2 id="people-title"><span class="glow-dot"></span>Characters</h2>
+  <div class="filters" role="tablist" aria-label="Show">
+   <button role="tab" data-filter="all" aria-selected="true">All</button>
+   <button role="tab" data-filter="female" aria-selected="false">Women</button>
+   <button role="tab" data-filter="male" aria-selected="false">Men</button>
+  </div>
+ </div>
+ <div class="people" id="people" role="radiogroup" aria-label="Character"></div>
+ <select id="choice" hidden aria-hidden="true"></select>
+ <p id="status" class="note" role="status">Loading character…</p>
+</section>
+
+<!-- profile and voice settings (voice-settings.js adds its section here) -->
+<aside id="profile" class="profile" aria-labelledby="profile-title">
+ <h2 id="profile-title"><span class="glow-dot"></span>Profile &amp; voice</h2>
+ <form id="employee-name-form">
+  <fieldset>
+   <legend>Your profile name</legend>
+   <label for="employee-name">Name</label>
+   <input id="employee-name" maxlength="200" required disabled autocomplete="name">
+   <button id="save-employee-name" disabled>Save name</button>
+   <small id="employee-name-status" role="status">Loading your profile...</small>
+  </fieldset>
+ </form>
+</aside>
+
+<script type="module" src="selection.js"></script>
+<script type="module" src="voice-settings.js"></script>
+<script type="module" src="profile-name.js"></script>
+</body>
+</html>

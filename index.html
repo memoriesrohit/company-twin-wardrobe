@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Company Twin Wardrobe</title>
+<meta name="description" content="Demo of the Company Twin 3D characters: 20 avatars, a wardrobe, lip-synced speech and motion.">
+<style>
+:root{--bg:#0a0e1a;--card:rgba(21,27,46,.7);--line:rgba(148,170,210,.16);--accent:#00d9ff;--text:#e8eefc;--muted:#8d9bb8;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;font-family:Inter,-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;color:var(--text);
+ background:radial-gradient(ellipse 60% 45% at 50% 20%,rgba(0,217,255,.12),transparent 70%),var(--bg)}
+main{max-width:1000px;margin:auto;padding:56px 16px 40px}
+h1{font-size:clamp(28px,5vw,44px);margin:0 0 10px;background:linear-gradient(90deg,#fff,var(--accent));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);font-size:17px;line-height:1.6;max-width:640px;margin:0 0 30px}
+.faces{display:flex;gap:8px;margin:0 0 34px;flex-wrap:wrap}
+.faces img{width:56px;height:56px;border-radius:50%;object-fit:cover;object-position:top;border:2px solid var(--line);background:#111a2e}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+a.card{display:block;text-decoration:none;color:inherit;padding:22px;border-radius:18px;background:var(--card);border:1px solid var(--line);transition:border-color .2s,transform .2s,box-shadow .2s}
+a.card:hover,a.card:focus-visible{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 0 24px rgba(0,217,255,.2);outline:none}
+.card .tag{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent)}
+.card h2{margin:8px 0 8px;font-size:20px}
+.card p{margin:0;color:var(--muted);line-height:1.55;font-size:14px}
+.card.main{grid-column:1/-1;background:linear-gradient(120deg,rgba(0,217,255,.14),rgba(21,27,46,.7) 60%);border-color:rgba(0,217,255,.35)}
+.note{margin-top:34px;padding:16px 18px;border-radius:14px;border:1px solid var(--line);color:var(--muted);font-size:13px;line-height:1.6}
+.note strong{color:var(--text)}
+footer{margin-top:26px;color:var(--muted);font-size:12px}
+footer a{color:var(--accent)}
+</style>
+</head>
+<body>
+<main>
+ <h1>Company Twin · 3D characters</h1>
+ <p class="lead">Twenty realistic office characters with real motion capture, lip-synced speech and a wardrobe:
+ office formal, white shirt or white T-shirt, with black or blue formal trousers.</p>
+ <div class="faces" id="faces" aria-hidden="true"></div>
+ <div class="cards">
+  <a class="card main" href="frontend/character/selection/index.html">
+   <span class="tag">Start here</span>
+   <h2>Wardrobe →</h2>
+   <p>Pick any of the 20 characters, dress them, recolour the shirt, and make them walk, wave and speak a sample line with moving lips.</p>
+  </a>
+  <a class="card" href="frontend/character/companion/avatar.html">
+   <span class="tag">Companion</span>
+   <h2>Learning companion avatar</h2>
+   <p>The character as it appears beside training pages.</p>
+  </a>
+  <a class="card" href="frontend/character/presentation/index.html">
+   <span class="tag">Presentation</span>
+   <h2>Character-led SOP</h2>
+   <p>A character presenting a short practice routine with captions and mouth movement.</p>
+  </a>
+ </div>
+ <p class="note"><strong>Demo only.</strong> This shows the 3D character pages without the platform's backend,
+ so sign-in, saving your look and AI answers are switched off. Everything else runs in your browser.
+ Best in desktop Chrome or Edge; the first character takes a few seconds to load (about 12&nbsp;MB each).</p>
+ <footer>Characters converted from the <a href="https://github.com/microsoft/Microsoft-Rocketbox">Microsoft Rocketbox</a> avatar library (MIT licence).</footer>
+</main>
+<script>
+const people=['sophia','marcus','priya','daniel','aisha','kenji','mia','arjun','olivia','james','mei','carlos'];
+const faces=document.getElementById('faces');
+for(const p of people){const i=new Image();i.src='frontend/character/assets/avatars/thumbs/'+p+'.jpg';i.alt='';i.loading='lazy';faces.append(i);}
+</script>
+</body>
+</html>
